@@ -1,8 +1,5 @@
 package com.example.springsecurityboostrap.security;
 
-import lombok.Data;
-
-
 public enum ApplicationUserPermission {
     STUDENT_READ("student:read"),
     STUDENT_WRITE("student:write"),

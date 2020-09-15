@@ -1,6 +1,5 @@
 package com.example.springsecurityboostrap.security;
 
-
 import com.google.common.collect.Sets;
 import java.util.Set;
 import static com.example.springsecurityboostrap.security.ApplicationUserPermission.*;
