@@ -1,7 +1,13 @@
 package com.example.springsecurityboostrap.security;
 
 import com.google.common.collect.Sets;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import sun.java2d.pipe.SpanShapeRenderer;
+
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import static com.example.springsecurityboostrap.security.ApplicationUserPermission.*;
 
 public enum ApplicationUserRole {
@@ -16,6 +22,15 @@ public enum ApplicationUserRole {
     }
 
     public Set<ApplicationUserPermission> getPermissions() {
+        return permissions;
+    }
+
+    public Set<GrantedAuthority> getGrantedAuthorities(){
+        Set<GrantedAuthority> permissions = getPermissions()
+                .stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toSet());
+        permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return permissions;
     }
 }
